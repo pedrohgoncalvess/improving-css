@@ -1,0 +1,158 @@
+.cabecalho__container {
+    display: flex;  /*forca os elementos a ficarem um do lado do outro independente do layout*/
+    justify-content: space-between; /*espaços entre os filhos da classe ela que o comportamento de ficar
+    o Alura Play no lado esquerdo, pesquisar no meio e os outros itens no lado direito*/
+    align-items: center; /*alinha os itens do container no centro da "linha", verticalmente no caso*/
+    position:fixed; /*faz com que o cabeçalho fique fixo no topo, ele acompanha o scroll do mouse*/
+    top:0; /*diz que fica exatamente colado no topo*/
+}
+
+.cabecalho__pesquisar__item { /*retira a barra de pesquisa da pagina*/
+    display: none;
+}
+
+/*footer*/
+
+.rodape__container {
+    display: flex;
+
+    /*flex-direction: column; /*declara para que os elementos ficam dispostos em formato colunar*/
+    /*flex-wrap: wrap; /*quebra em mais de 1 coluna*/
+
+    flex-flow: column wrap; /*1 propriedade para fazer oque as duas acima fazem*/
+}
+
+/*secao superior*/
+
+.superior__secao__container {
+    display: flex;
+    align-items: center;
+    white-space: nowrap; /*deixa todos os elementos centralizados e do mesmo comprimento*/
+    overflow: scroll; /*adiciona scroll para ver todos os itens disponiveis*/
+    gap:15px; /*aplica espaçamento entre os itens, nao aplica as extremidades*/
+}
+
+/*menu*/
+
+.menu__container{
+    position: fixed; /*defini que o menu tem que ficar fixado*/
+    bottom: 0%; /*propriedade conjunta de position que defini que tem q ser fixado na parte de baixo da pagina*/
+    height: 74px; /*tamanho do menu em comprimento*/
+    width: 100%; /*tamanho do menu em largura (pega 100% da tela)*/
+}
+
+.menu__lista {
+    display: flex;
+    justify-content: space-around;
+    height: 100%;
+}
+
+.menu__lista li { /*seleciona apenas os elementos li dentro do container*/
+    align-self: center; /*alinha os elementos no centro, aplicando a propriedade em cada elemento e nao em todo o container diferente de como estavamos fazendo anteriorment*/
+}
+
+.menu__lista:nth-child(2), /*pega a ordem dos elementos filhos e aplica algum comportamento, no nosso caso o segundo, terceiro e quarto elementos não devem aparecer no menu*/
+.menu__lista:nth-child(3),
+.menu__lista:nth-child(4) {
+    display: none;
+}
+
+.menu__itens { /*trata cada opcao no menu alinha os icones centralizando e o texto de cada item embaixo do icone*/
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/*videos*/
+
+.videos__container {
+    display: flex;
+    flex-wrap: wrap; /*quebra de linha nos videos*/
+    gap:10px
+}
+
+.videos__item {
+    height: 303px;
+    width: 280px;
+    flex-grow: 1; /*faz com que todos os elementos tenham tamanho proporcional e nao deixem "espaço sobrando"*/
+}
+
+
+/*a ordem alterou o resultado, se o @media ficar acima dos elementos de menu o comportamento vai ser completamente diferente*/
+@media (min-width: 834px) { /*toda tela que tiver 834px de largura ou mais ele vai aplicar o estilo declarado dentro da @media*/
+
+    /*cabecalho*/
+    .cabecalho__pesquisar__item {
+        display:block; /*adiciona a barra de pesquisa sempre que tiver 834px de largura ou mais*/
+    }
+
+
+    /*menu para tablet*/
+
+    .menu__container {
+        left: 0;
+        height: auto;
+        width: 74px;
+        top: 80px;
+    }
+
+    .menu__lista {
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 15px;
+        gap: 33px;
+    }
+
+    /*rodape*/
+    .rodape__container {
+        justify-content: space-between;
+    }
+
+}
+
+@media(min-width: 1440px) {
+
+    .menu__container {
+        width: 239px;
+        overflow: scroll;
+    }
+
+    .menu__lista:nth-child(2),
+    .menu__lista:nth-child(3),
+    .menu__lista:nth-child(4) {
+        display: flex;
+    }
+
+    .menu__lista {
+        height: auto;
+        padding: 20px 17px 20px 15px; /*da o comportamento de distancia entre as bordas do elemento pai entre os 4 lados */
+    }
+
+    .menu__itens {
+        flex-direction: row; /*os icones e textos ficam lado a lado, no caso os elementos filhos ficam lado a lado*/
+        gap: 15px;
+        align-items: center;
+    }
+
+    .menu__lista:nth-child(3) {
+        flex-direction: column-reverse; /*inverte a ordem da disposição dos itens*/
+    }
+
+    /*altera a ordem manualmente dos elementos*/
+    .jogos {
+        order: 3;
+    }
+
+    .filmes {
+        order:2;
+    }
+
+    .premium {
+        order:1;
+    }
+
+    .maispagina {
+        order:4;
+    }
+
+}
